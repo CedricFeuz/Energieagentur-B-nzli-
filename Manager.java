@@ -12,7 +12,6 @@ import Model.SdatDaten;
 import Model.SdatListe;
 import View.ExportierenGui;
 import View.J_VerbrauchsGui;
-import View.ModelManager;
 import View.StartGui;
 import View.T_VerbrauchsGui;
 import View.ZaehlerstandGui;
