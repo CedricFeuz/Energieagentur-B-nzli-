@@ -1,4 +1,9 @@
 package Control;
+/**
+ * @author Yara Fischer
+ * @date 01.10.19
+ * @Version 1.0
+ */
 
 import java.sql.Timestamp;
 import java.util.HashMap;
