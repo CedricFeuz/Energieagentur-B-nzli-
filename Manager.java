@@ -27,7 +27,6 @@ public class Manager extends JFrame{
 	private ESLListe eslBezogen;
 	
 	//View
-	private ModelManager modelManager;
 	private JFrame frame;
 	private StartGui startGui;
 	private ZaehlerstandGui zaehlerstandGui;
