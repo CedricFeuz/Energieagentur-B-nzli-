@@ -4,10 +4,13 @@ package View;
  * Kalender
  * @source: https://www.javacodex.com/Swing/Swing-Calendar
  */
+import Control.*;
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.*;
 
 /**
@@ -30,7 +33,7 @@ public class Kalender extends JFrame {
     public Kalender() {
         gui();
     }
-
+    
     private void gui() {
 
         label = new JLabel();
@@ -99,11 +102,15 @@ public class Kalender extends JFrame {
         for (int day = 1; day <= numberOfDays; day++) {
             model.setValueAt(day, i / 7, i % 7);
             i = i + 1;
-        }
-
+        }        
+    }
+    
+    public DefaultTableModel getModel() {
+        return this.model;
     }
 
     public static void main(String[] arguments) {
-        new Kalender();
+        Kalender g = new Kalender();
+        g.gui();
     }
 }
