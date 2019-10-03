@@ -20,16 +20,13 @@ public class ESLDaten {
 		
 	}
 	
-	public Date getDatum(String Time) {
+	public static Date getDatum(String Time) {
 		String month = Time.substring(5, 7);
 		int months = (int) month.charAt(1);
-		if(month.charAt(0) == 1) {
-			months = months + 10;
-		}
 		Date date = new Date(115, months - 1, 1);
 		return date;
 	}
-	public double getBezug(java.util.Date date) {
+	public static double getBezug(java.util.Date date) {
 		double zaehlerstand = 0.0;
 		int zaehler = 0;
 		try {
@@ -97,5 +94,9 @@ public class ESLDaten {
 			
 		}
 		return zaehlerstand;
+	}
+	public static void main(String[] args) {
+		Date date = new Date(119, 5, 1);
+		System.out.print(getBezug(date));
 	}
 }
