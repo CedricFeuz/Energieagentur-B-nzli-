@@ -1,77 +1,109 @@
-package Model;
-/**
- * @author Yara Fischer
- * @date 01.10.19
- * @Version 1.0
- */
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Collections;
+import java.security.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class ESLListe {
-	private HashMap<Timestamp, ESLDaten> einspeisen; // Liste mit Werten, welche in das Stromnetz eingespiesen wurden
-	private HashMap<Timestamp, ESLDaten> bezogen; //Liste mit werden, welche aus dem Stromnetz  bezogen wurden
+	public static void main(String[] args) {
+		
+	}
+
+	double[] einspeisen;
+	
+	double[] bezug;
+
 	private ESLDaten wert;
 
+	Date januar = new Date(119, 1,1);
+	Date februar = new Date(119, 2,1);
+	Date maerz = new Date(119, 3,1);
+	Date april = new Date(119, 4,1);
+	Date mai = new Date(119, 5,1);
+	Date juni = new Date(119, 6,1);
+	Date juli = new Date(119, 7,1);
+	Date august = new Date(119, 8,1);
+	Date september = new Date(119, 9,1);
+	Date oktober = new Date(119, 10,1);
+	Date november = new Date(119, 11,1);
+	Date dezember = new Date(119, 11,1);
+
 	public ESLListe() {
-		einspeisen = new HashMap<>();
-		bezogen = new HashMap<>();
+
 	}
 
+
+	public double getEinspeisen(int index) {
+		return einspeisen[index];
+	}
+
+
+
+	public double getBezug(int index) {
+		return bezug[index];
+	}
+
+
+
 	/**
+
 	 * Diese Methode erstellt eine Liste mit allen Werten, welche Strom in das Stromnetz eingespiesen haben
+
 	 */
+
 	public void setListEinspeisen() {
-		for (int i = 0; i < 300; i++) {
-			einspeisen.put(wert.getDatum(i), new ESLDaten(wert.getEinspeisung(wert.getDatum(i))));
-		}
-	}
-	/**
-	 * 
-	 * @return Liste mit den Werten, welche in das Stromnetz eingespiesen wurden
-	 */
-	public HashMap<Timestamp, ESLDaten> getListEinspeisen() {
-		return einspeisen;
-	}
-
-	public void setListBezogen() {
-		for (int i = 0; i < 300; i++) {
-			einspeisen.put(wert.getDatum(i), new ESLDaten(wert.getBezug(wert.getDatum(i))));
-		}
-	}
-
-	public HashMap<Timestamp, ESLDaten> getListBezogen() {
-		return bezogen;
-	}
-
-	public void sort(HashMap<Timestamp, ESLDaten> daten) {
-		TreeMap<Timestamp, ESLDaten> sorted = new TreeMap<>();
-		sorted.putAll(daten);
-		daten.clear();
-		daten.putAll(sorted);
+		einspeisen[0] = wert.getEinspeisen(januar);
+		einspeisen[1] = wert.getEinspeisen(februar);
+		einspeisen[2] = wert.getEinspeisen(maerz);
+		einspeisen[3] = wert.getEinspeisen(april);
+		einspeisen[4] = wert.getEinspeisen(mai);
+		einspeisen[5] = wert.getEinspeisen(juni);
+		einspeisen[6] = wert.getEinspeisen(juli);
+		einspeisen[7] = wert.getEinspeisen(august);
+		einspeisen[8] = wert.getEinspeisen(september);
+		einspeisen[9] = wert.getEinspeisen(oktober);
+		einspeisen[10] = wert.getEinspeisen(november);
+		einspeisen[11] = wert.getEinspeisen(dezember);
 	}
 	
-	public double getDurchschnittBezogen(HashMap<Timestamp, ESLDaten> daten) {
-		double durchschnitt = 0;
-		for(int i = 0; i < daten.size(); i++) {
-			durchschnitt =+ daten.get(wert.getDatum(i)).getBezug(wert.getDatum(i));
+	public void setListBezug() {
+		einspeisen[0] = wert.getBezug(januar);
+		einspeisen[1] = wert.getBezug(februar);
+		einspeisen[2] = wert.getBezug(maerz);
+		einspeisen[3] = wert.getBezug(april);
+		einspeisen[4] = wert.getBezug(mai);
+		einspeisen[5] = wert.getBezug(juni);
+		einspeisen[6] = wert.getBezug(juli);
+		einspeisen[7] = wert.getBezug(august);
+		einspeisen[8] = wert.getBezug(september);
+		einspeisen[9] = wert.getBezug(oktober);
+		einspeisen[10] = wert.getBezug(november);
+		einspeisen[11] = wert.getBezug(dezember);
+	}
+
+	public double getDurchschnittBezogen() {
+
+		double durchschnitt = 0.0;
+		for(int i = 0; i<12; i++) {
+			durchschnitt = durchschnitt + einspeisen[i];
 		}
-		
-		durchschnitt = durchschnitt / daten.size();
+
+		durchschnitt = durchschnitt / 12;
 		return durchschnitt;
+
+	}
+
+	
+
+	public double getDurchschnittEinspeissen() {
+
+		double durchschnitt = 0.0;
+		for(int i = 0; i<12; i++) {
+			durchschnitt = durchschnitt + bezug[i];
+		}
+
+		durchschnitt = durchschnitt / 12;
+		return durchschnitt;
+
 	}
 	
-	public double getDurchschnittEinspeissen(HashMap<Timestamp, ESLDaten> daten) {
-		double durchschnitt = 0;
-		for(int i = 0; i < daten.size(); i++) {
-			durchschnitt =+ daten.get(wert.getDatum(i)).getEinspeisung(wert.getDatum(i));
-		}
-		
-		durchschnitt = durchschnitt / daten.size();
-		return durchschnitt;
-	}
+	
 }
