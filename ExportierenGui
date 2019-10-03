@@ -1,0 +1,77 @@
+package View;
+
+/**
+ * Teilweise mit GUIGenie generiert
+ *
+ * @author Clarissa Sullivan
+ * @version 1.1
+ * @since 20.08.2019
+ */
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import org.omg.CORBA.TypeCodePackage.Bounds;
+
+public class ExportierenGui extends JFrame {
+
+    private JPanel panel;
+    private JRadioButton eingespiesen, verbraucht, beides;
+    private JButton httpbutton, csvbutton, jsonbutton, zurueckbutton;
+
+    private Manager vm;
+    private JFrame frame;
+
+    public ExportierenGui(JFrame frame, Manager vm) {
+
+        this.frame = frame;
+        this.vm = vm;
+    }
+
+    public void gui() {
+        
+        frame.setTitle("Exportieren");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setPreferredSize(new Dimension(944, 600));
+
+        eingespiesen = new JRadioButton("Eingespiesen");
+        verbraucht = new JRadioButton("Verbraucht");
+        beides = new JRadioButton("Beides");
+        httpbutton = new JButton("HTTP-Server Upload");
+        csvbutton = new JButton("CSV-Datei");
+        jsonbutton = new JButton("JSON-Datei");
+        zurueckbutton = new JButton("Zurück");
+        panel = new JPanel();
+
+        panel.setLayout(null);
+
+        eingespiesen.setBounds(100, 180, 140, 25);
+        verbraucht.setBounds(100, 250, 100, 25);
+        beides.setBounds(100, 320, 100, 25);
+        httpbutton.setBounds(505, 115, 340, 75);
+        csvbutton.setBounds(505, 250, 340, 75);
+        jsonbutton.setBounds(505, 385, 340, 75);
+        zurueckbutton.setBounds(5, 5, 75, 25);
+
+        panel.add(eingespiesen);
+        panel.add(verbraucht);
+        panel.add(beides);
+        panel.add(httpbutton);
+        panel.add(csvbutton);
+        panel.add(jsonbutton);
+        panel.add(zurueckbutton);
+
+        frame.getContentPane().add(panel);
+
+        frame.pack();
+        frame.setResizable(false);
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        ExportierenGui eg = new ExportierenGui(new JFrame(), new Manager());
+        eg.gui();
+
+    }
+
+}
