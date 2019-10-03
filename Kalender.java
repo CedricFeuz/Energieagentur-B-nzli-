@@ -2,7 +2,6 @@ package View;
 
 /**
  * Kalender
- *
  * @source: https://www.javacodex.com/Swing/Swing-Calendar
  */
 import java.util.*;
@@ -29,20 +28,20 @@ public class Kalender extends JFrame {
     private JScrollPane pane;
 
     public Kalender() {
-        init();
+        gui();
     }
 
-    private void init() {
+    private void gui() {
 
         label = new JLabel();
         label.setHorizontalAlignment(SwingConstants.CENTER);
 
-        //Actionlistener den Knöpfen zufügen
+        //Actionlistener den Knoepfen zufuegen
         b1 = new JButton("<-");
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                //geht einen Monat nach zurück
+                //geht einen Monat nach zurueck
                 cal.add(Calendar.MONTH, -1);
                 updateMonth();
             }
@@ -57,19 +56,24 @@ public class Kalender extends JFrame {
                 updateMonth();
             }
         });
-
+        
         //Kopf von Kalender
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.add(b1, BorderLayout.WEST);
         panel.add(label, BorderLayout.CENTER);
         panel.add(b2, BorderLayout.EAST);
+        
+        //Farbe der Knoepfe setzen 
+        b1.setBackground(Color.white);
+        b2.setBackground(Color.white);
+        
 
         String[] columns = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
         model = new DefaultTableModel(null, columns);
         table = new JTable(model);
         pane = new JScrollPane(table);
-
+        
         this.add(panel, BorderLayout.NORTH);
         this.add(pane, BorderLayout.CENTER);
 
@@ -86,7 +90,7 @@ public class Kalender extends JFrame {
 
         int startDay = cal.get(Calendar.DAY_OF_WEEK);
         int numberOfDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        int weeks = 6;//cal.getActualMaximum(Calendar.WEEK_OF_MONTH);
+        int weeks = 6;
 
         model.setRowCount(0);
         model.setRowCount(weeks);
