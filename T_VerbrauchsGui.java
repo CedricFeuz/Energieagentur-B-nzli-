@@ -6,17 +6,18 @@ package View;
  * @version 1.0
  *
  */
+import Control.*;
 import java.util.*;
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.event.*;
 import javax.swing.table.*;
 
 /**
- * Dem Benutzer wird sein taeglicher Verbrauch an Strom, in Form eines Diagrammes
- * angezeigt. Der Benutzer waehlt im Kalender aus, fuer welchen Tag er seinen
- * Verbrauch sehen will. Die blaue Linie entspricht dem Verbrauch der Einspesung
- * und die rote Linie dem Bezug.
+ * Dem Benutzer wird sein taeglicher Verbrauch an Strom, in Form eines
+ * Diagrammes angezeigt. Der Benutzer waehlt im Kalender aus, fuer welchen Tag
+ * er seinen Verbrauch sehen will. Die blaue Linie entspricht dem Verbrauch der
+ * Einspesung und die rote Linie dem Bezug.
  */
 public class T_VerbrauchsGui extends JFrame {
 
@@ -42,14 +43,14 @@ public class T_VerbrauchsGui extends JFrame {
     }
 
     public void gui() {
-        
+
         //Fensterdetails
         frame.setTitle("Tagesverbrauch");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Groesse bei Minimierung des Fensters 
         frame.setSize(944, 600);
         frame.setLayout(new BorderLayout(150, 100));
-        
+
         zuruekButton = new JButton("Zurück");
         kalenderPanel = new JPanel();
         diagrammPanel = new JPanel();
@@ -76,20 +77,26 @@ public class T_VerbrauchsGui extends JFrame {
         //Kalender dem Panel zufuegen 
         kalenderPanel.add(kalender.getContentPane(), BorderLayout.NORTH);
         diagrammPanel.add(new Kalender().getContentPane());
-        
-        //Diagramm dem Panel zufuegen
 
+        //Diagramm dem Panel zufuegen
         //zum erkennen wo die Panels plaziert sind
         //kalenderPanel.setBackground(Color.gray);
         //diagrammPanel.setBackground(Color.red);
-
         //Komponente dem Fenster zufuegen
         frame.getContentPane().add(buttonPanel, BorderLayout.WEST);
         frame.getContentPane().add(pane, BorderLayout.CENTER);
         frame.getContentPane().add(new JPanel(), BorderLayout.EAST);
-        
+
         frame.setResizable(false);
         frame.setVisible(true);
+
+        //ACTIONLISTENER
+        kalender.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                //TODO 
+            }
+        });
     }
 
     public static void main(String[] arguments) {
